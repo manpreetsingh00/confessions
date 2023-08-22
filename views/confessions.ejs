@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Confessions</title>
+  <link rel="stylesheet" type="text/css" href="/confessions.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+  <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+</head>
+<script src="/socket.io/socket.io.js"></script>
+
+<body>
+    <header>
+  <h1>Confessions</h1>
+</header>
+<div class="sortoption">
+  <label for="sort">Sort by:</label>
+  <select id="sort">
+    <option value="timestamp">Timestamp</option>
+    <option value="text">Confession Text</option>
+  </select>
+</div>
+  <table id="confessions-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Confession</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const [index, confession] of confessions.entries()) { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td data-sort="text" class="open-popup-button" data-text="<%= confession.text %>""><%= confession.text.length > 150 ? confession.text.substring(0, 150) + '...' : confession.text %></td>
+          <td data-sort="timestamp"><%= confession.timestamp.toLocaleString() %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <a href="/confessions?page=<%= currentPage - 1 %>">Previous</a>
+    <span>Page <%= currentPage %></span>
+    <a href="/confessions?page=<%= currentPage + 1 %>">Next</a>
+  </div>
+  <!-- Modal -->
+
+
+<div id="confessionModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom" id="confessionModalContent"></div>
+  </div>
+
+
+  <a href="/" class="link-to-submission">Go back to submission page</a>
+  <script src="/confessions.js"></script>
+</body>
+</html>

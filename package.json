@@ -1,0 +1,17 @@
+{
+  "name": "confessions",
+  "version": "1.0.0",
+  "description": "for anonymous confesions",
+  "main": "src/serve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bad-words": "^3.0.4",
+    "ejs": "^3.1.9",
+    "profanity-hindi": "^1.1.0",
+    "socket.io": "^4.7.2"
+  }
+}
